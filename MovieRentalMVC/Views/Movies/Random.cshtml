@@ -1,0 +1,29 @@
+﻿@* Use Movie model *@
+@model MovieRentalMVC.ViewModels.RandomMovieViewModel
+
+@{
+    ViewBag.Title = "Random";
+}
+
+@{
+    var className = Model.Customers.Count > 1 ? "popular" : null;
+}
+
+
+<h2 class="@className">@Model.Movie.Name</h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <p>No one rent this movie</p>
+}
+
+else
+{
+    <ul>
+        @foreach (var customers in Model.Customers)
+        {
+            <li>@customers.Name </li>
+        }
+    </ul>
+}
+

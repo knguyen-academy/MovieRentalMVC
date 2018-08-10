@@ -13,6 +13,17 @@ namespace MovieRentalMVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //Custom route movies/released/year/month
+            //routes.MapRoute(
+            //    "Release Date",
+            //    "movies/released/{year}/{month}",
+            //    new { controller = "Movies", action = "ByReleaseDate" },
+            //    new { year = @"\d{4}", month = @"\d{2}" }
+            //    );
+
+            // New way to define route
+            routes.MapMvcAttributeRoutes();
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
