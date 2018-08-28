@@ -9,10 +9,28 @@ namespace MovieRentalMVC.Controllers
 {
     public class CustomersController : Controller
     {
+
+        // Get Data from Dbcontext
+        private ApplicationDbContext _context;
+
+        // Constructor
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        //Dispose object
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = GetCustomers();
+            //var customers = GetCustomers();   //previous use hardcoded data
+            var customers = _context.Customers.ToList();
             return View(customers);
         }
 
@@ -24,7 +42,8 @@ namespace MovieRentalMVC.Controllers
             //where you abreviate every object inside of the list, meaning c is the same as a customer 
             //then you compare the id of the c object with the id argument you received in your action.
             //SingleOrDefault => "Returns the only element of a sequence, or a default value if the sequence is empty; "
-            var customers = GetCustomers().SingleOrDefault(c => c.Id == id);
+            //var customers = GetCustomers().SingleOrDefault(c => c.Id == id);
+            var customers = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customers == null)
                 return HttpNotFound();
 
