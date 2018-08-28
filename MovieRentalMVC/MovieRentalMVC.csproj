@@ -221,6 +221,18 @@
     <Compile Include="Migrations\201808272259170_AddNotationToCustomer.Designer.cs">
       <DependentUpon>201808272259170_AddNotationToCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808282253466_AddMemberShipTypeName.cs" />
+    <Compile Include="Migrations\201808282253466_AddMemberShipTypeName.Designer.cs">
+      <DependentUpon>201808282253466_AddMemberShipTypeName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808282320444_UpdateMemberShipTypeNameCol.cs" />
+    <Compile Include="Migrations\201808282320444_UpdateMemberShipTypeNameCol.Designer.cs">
+      <DependentUpon>201808282320444_UpdateMemberShipTypeNameCol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808282324391_UpdateMemberShipTypeNameCol1.cs" />
+    <Compile Include="Migrations\201808282324391_UpdateMemberShipTypeNameCol1.Designer.cs">
+      <DependentUpon>201808282324391_UpdateMemberShipTypeNameCol1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -328,6 +340,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808272259170_AddNotationToCustomer.resx">
       <DependentUpon>201808272259170_AddNotationToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808282253466_AddMemberShipTypeName.resx">
+      <DependentUpon>201808282253466_AddMemberShipTypeName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808282320444_UpdateMemberShipTypeNameCol.resx">
+      <DependentUpon>201808282320444_UpdateMemberShipTypeNameCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808282324391_UpdateMemberShipTypeNameCol1.resx">
+      <DependentUpon>201808282324391_UpdateMemberShipTypeNameCol1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
