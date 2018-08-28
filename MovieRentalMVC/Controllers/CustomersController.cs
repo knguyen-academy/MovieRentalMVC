@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MovieRentalMVC.Models;
-
+using System.Data.Entity;
 namespace MovieRentalMVC.Controllers
 {
     public class CustomersController : Controller
@@ -30,7 +30,9 @@ namespace MovieRentalMVC.Controllers
         public ActionResult Index()
         {
             //var customers = GetCustomers();   //previous use hardcoded data
-            var customers = _context.Customers.ToList();
+            //var customers = _context.Customers.ToList();  
+            // use include() to ref. MembershipType table
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
             return View(customers);
         }
 
@@ -55,14 +57,14 @@ namespace MovieRentalMVC.Controllers
         // GetCustomers function, return list of customers
         // Explain: IEnumerable interface, which allows use to
         // iterate over the list, so that we can use foreach in (Index.cshtml of customerView)
-        private IEnumerable<Customer> GetCustomers()
-        {
-            return new List<Customer>
-            {
-                new Customer {Id =1, Name = "Knguyen"},
-                new Customer {Id=2, Name = "Peter Pan"}
-            };
-        }
+        //private IEnumerable<Customer> GetCustomers()
+        //{
+        //    return new List<Customer>
+        //    {
+        //        new Customer {Id =1, Name = "Knguyen"},
+        //        new Customer {Id=2, Name = "Peter Pan"}
+        //    };
+        //}
     }
 
 }
