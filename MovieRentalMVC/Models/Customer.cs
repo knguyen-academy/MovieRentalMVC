@@ -19,5 +19,6 @@ namespace MovieRentalMVC.Models
         public MembershipType MembershipType { get; set; }
         //FK to membershiptype (convention -> treat it as FK)
         public byte MembershipTypeId { get; set; }
+        public DateTime? Birthday { get; set; } // ? = NULLable
     }
 }
