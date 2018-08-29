@@ -5,47 +5,66 @@ using System.Web;
 using System.Web.Mvc;
 using MovieRentalMVC.Models;
 using MovieRentalMVC.ViewModels;
+using System.Data.Entity;
 namespace MovieRentalMVC.Controllers
 {
     public class MoviesController : Controller
     {
+        private ApplicationDbContext _context;
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         // GET: Movies
         public ActionResult Index()
         {
-            var movies = GetMovies();
+            //var movies = GetMovies();
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
+            return View(movies);
+        }
+
+        public ActionResult Detail(int id)
+        {
+            var movies = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+            if (movies == null) return HttpNotFound(); 
             return View(movies);
         }
 
         //Get List of movie
-        private IEnumerable<Movie> GetMovies()
-        {
-            return new List<Movie>
-            {
-                new Movie {Id=1, Name="Shrek" },
-                new Movie {Id=2, Name="Ironman"}
-            };
-        }
+        //private IEnumerable<Movie> GetMovies()
+        //{
+        //    return new List<Movie>
+        //    {
+        //        new Movie {Id=1, Name="Shrek" },
+        //        new Movie {Id=2, Name="Ironman"}
+        //    };
+        //}
 
         //Test 
-        public ActionResult Random()
-        {
-            var movie = new Movie() { Name = "Ironman" };
-            var customers = new List<Customer>
-            {
-                new Customer { Name ="Customer 1"},
-                new Customer { Name ="Customer 2"}
+        //public ActionResult Random()
+        //{
+        //    var movie = new Movie() { Name = "Ironman" };
+        //    var customers = new List<Customer>
+        //    {
+        //        new Customer { Name ="Customer 1"},
+        //        new Customer { Name ="Customer 2"}
 
-            };
+        //    };
 
-            var viewModel = new RandomMovieViewModel
-            {
-                Movie = movie,
-                Customers = customers
-            };
+        //    var viewModel = new RandomMovieViewModel
+        //    {
+        //        Movie = movie,
+        //        Customers = customers
+        //    };
 
-            return View(viewModel);
+        //    return View(viewModel);
 
-        }
+        //}
 
         //movies/edit/{id}
         public ActionResult Edit(int id)
@@ -62,21 +81,21 @@ namespace MovieRentalMVC.Controllers
         }
 
 
-        public ActionResult Customers()
-        {
-            var customers = new List<Customer>
-            {
-                new Customer {Id=1, Name="John Smith" },
-                new Customer {Id=2, Name ="Lara Ngo"}
-            };
+        //public ActionResult Customers()
+        //{
+        //    var customers = new List<Customer>
+        //    {
+        //        new Customer {Id=1, Name="John Smith" },
+        //        new Customer {Id=2, Name ="Lara Ngo"}
+        //    };
 
-            return View(customers);
-        }
+        //    return View(customers);
+        //}
 
-        public ActionResult Movies()
-        {
-            var movies = new Movie() { Name = "Shrek" };
-            return View(movies);
-        }
+        //public ActionResult Movies()
+        //{
+        //    var movies = new Movie() { Name = "Shrek" };
+        //    return View(movies);
+        //}
     }
 }
