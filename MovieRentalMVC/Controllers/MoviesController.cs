@@ -28,7 +28,7 @@ namespace MovieRentalMVC.Controllers
             return View(movies);
         }
 
-        public ActionResult Detail(int id)
+        public ActionResult Details(int id)
         {
             var movies = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
             if (movies == null) return HttpNotFound(); 
