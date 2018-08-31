@@ -25,6 +25,11 @@ namespace MovieRentalMVC.Controllers
             _context.Dispose();
         }
 
+        //NEW CUSTOMER
+        public ActionResult New()
+        {
+            return View();
+        }
 
         // GET: Customers
         public ActionResult Index()
