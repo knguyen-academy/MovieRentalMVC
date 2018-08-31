@@ -15,6 +15,9 @@ namespace MovieRentalMVC.Models
         [StringLength(255)]
         public string Name { get; set; }
         public bool IsSubscribedToNewsLetter { get; set; }
+        public DateTime? Birthday { get; set; } // ? = NULLable
+
+
         //Ref to membershipType model to load object from Membership type
         public MembershipType MembershipType { get; set; }
         //FK to membershiptype (convention -> treat it as FK)
